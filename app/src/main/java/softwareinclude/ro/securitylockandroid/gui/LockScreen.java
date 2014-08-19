@@ -1,5 +1,8 @@
 package softwareinclude.ro.securitylockandroid.gui;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import softwareinclude.ro.securitylockandroid.R;
 import softwareinclude.ro.securitylockandroid.util.ApplicationConstants;
@@ -20,6 +24,7 @@ public class LockScreen extends Activity implements View.OnClickListener{
 
     private EditText passwordInput;
     private Button unlock;
+    private ImageView lockImage;
 
     private String loadPasswordSharedPref;
 
@@ -38,6 +43,7 @@ public class LockScreen extends Activity implements View.OnClickListener{
      * Init UI views and components
      */
     public void initUI() {
+        lockImage = (ImageView) findViewById(R.id.lockImage);
         passwordInput = (EditText)findViewById(R.id.passwordInput);
         unlock = (Button) findViewById(R.id.applicationUnlock);
         unlock.setOnClickListener(this);
@@ -61,6 +67,25 @@ public class LockScreen extends Activity implements View.OnClickListener{
         return preferences.getString(key, null);
     }
 
+    /**
+     * Create rotation and after the animation finish activity
+     */
+    public void startAnimation() {
+        float dest = 360;
+        if (lockImage.getRotation() == 360) {
+            dest = 0;
+        }
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(lockImage,
+                "rotation", dest);
+        objectAnimator.setDuration(2000);
+        objectAnimator.start();
+        objectAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                finish();
+            }});
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -75,7 +100,9 @@ public class LockScreen extends Activity implements View.OnClickListener{
                     passwordInput.setError("Wrong Password");
                     break;
                 }
-                finish();
+
+                startAnimation();
+
                 break;
             }
 

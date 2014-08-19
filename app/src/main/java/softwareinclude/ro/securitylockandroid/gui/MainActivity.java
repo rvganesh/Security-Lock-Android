@@ -237,10 +237,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
             case R.id.changePasswordDone: {
                 //Check for null or empty fields
-                if(changePasswordCurrentInput == null || changePasswordNewInput == null || changePasswordRetypeInput == null
-                                                      || emptyInputCheck(changePasswordCurrentInput)
-                                                      || emptyInputCheck(changePasswordNewInput)
-                                                      || emptyInputCheck(changePasswordRetypeInput)){
+                if(emptyInputCheck(changePasswordCurrentInput) || emptyInputCheck(changePasswordNewInput)
+                                                               || emptyInputCheck(changePasswordRetypeInput)){
                     break;
                 }
                 //check current password if valid
@@ -276,9 +274,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
             case R.id.helpButton: {
                 Toast.makeText(this,"Help in progress",Toast.LENGTH_SHORT).show();
-
-                String password = loadPasswordPref(ApplicationConstants.SHARED_PREFERENCES_PASSWORD,this);
-                Log.i("Saved Password Value: ",""+ password);
                 break;
             }
 
