@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="#2A3949">
     <Button
-        android:id="@+id/mainHelpButton"
+        android:id="@+id/helpButton"
         android:layout_width="wrap_content"
         android:layout_height="40dip"
         android:text="Help"
@@ -23,5 +23,15 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:textStyle="bold"
+        />
+
+    <ImageButton
+        android:id="@+id/showLockOptions"
+        android:layout_width="35dip"
+        android:layout_height="30dip"
+        android:layout_margin="5dip"
+        android:background="@drawable/down_arrow"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         />
 </RelativeLayout>

@@ -6,5 +6,6 @@ package softwareinclude.ro.securitylockandroid.util;
 public class ApplicationConstants {
 
     public static final String EMPTY = "";
+    public static final String SHARED_PREFERENCES_PASSWORD = "ApplicationPasswordKey";
 
 }
