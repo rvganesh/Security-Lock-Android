@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/metalic_bg">
+
+    <EditText
+        android:id="@+id/passwordInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dip"
+        android:layout_marginTop="20dip"
+        android:textColor="@color/Black"
+        android:inputType="textPassword"
+        android:background="@drawable/input_corners"
+        android:hint="Enter Password"
+        android:ems="8"
+        android:maxLines="1"
+        />
+
+    <ImageView
+        android:id="@+id/lockImage"
+        android:layout_width="250dip"
+        android:layout_height="250dip"
+        android:layout_centerInParent="true"
+        android:background="@drawable/lock_image"
+        />
+
+</RelativeLayout>
