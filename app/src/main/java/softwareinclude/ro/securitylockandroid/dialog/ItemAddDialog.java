@@ -2,7 +2,6 @@ package softwareinclude.ro.securitylockandroid.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -12,6 +11,9 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import softwareinclude.ro.securitylockandroid.R;
+import softwareinclude.ro.securitylockandroid.interfaces.IDatabaseManager;
+import softwareinclude.ro.securitylockandroid.manager.DatabaseManager;
+import softwareinclude.ro.securitylockandroid.model.AccountDataModel;
 
 /**
  * Created by Sebastian Manolescu on 20.08.2014.
@@ -27,6 +29,7 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener{
     private ImageButton addDetailsItem;
     private LinearLayout addDetailsLayout;
 
+    private IDatabaseManager databaseManager;
 
     public ItemAddDialog(Context context) {
         super(context);
@@ -63,6 +66,10 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener{
 
     private void initData() {
         detailsItemInput.setVisibility(View.GONE);
+
+        // init database manager
+        databaseManager = new DatabaseManager(context);
+
     }
 
 
@@ -76,6 +83,19 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener{
             }
 
             case R.id.doneAdd: {
+
+                //Insert new AccountDataModel object in Database
+                AccountDataModel accountData = new AccountDataModel();
+                accountData.setAccountName(accountItemName.getText().toString());
+                accountData.setAccountPassword(accountItemPassword.getText().toString());
+                if(detailsItemInput.isEnabled()){
+                    accountData.setAccountDetails("Test");
+                }else {
+                    accountData.setAccountDetails(detailsItemInput.getText().toString());
+                }
+
+                databaseManager.insertAccountDataItem(accountData);
+
                 dismiss();
                 break;
             }
