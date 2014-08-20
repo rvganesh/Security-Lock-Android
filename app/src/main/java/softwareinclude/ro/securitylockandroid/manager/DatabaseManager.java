@@ -5,6 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
 
+import java.util.List;
+
 import softwareinclude.ro.securitylockandroid.interfaces.IDatabaseManager;
 import softwareinclude.ro.securitylockandroid.model.AccountDataModel;
 import softwareinclude.ro.securitylockandroid.model.AccountDataModelDao;
@@ -124,5 +126,20 @@ public class DatabaseManager implements IDatabaseManager {
     @Override
     public void findAccountById() {
 
+    }
+
+    @Override
+    public List<AccountDataModel> loadListAccounts() {
+        List<AccountDataModel> accoutsList = null;
+        try {
+            openReadableDb();
+            AccountDataModelDao accountDataModelDao = daoSession.getAccountDataModelDao();
+            accoutsList = accountDataModelDao.loadAll();
+
+            daoSession.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return accoutsList;
     }
 }

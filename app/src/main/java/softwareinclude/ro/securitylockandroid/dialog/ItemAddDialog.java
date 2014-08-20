@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 
 import softwareinclude.ro.securitylockandroid.R;
 import softwareinclude.ro.securitylockandroid.interfaces.IDatabaseManager;
-import softwareinclude.ro.securitylockandroid.manager.DatabaseManager;
 import softwareinclude.ro.securitylockandroid.model.AccountDataModel;
 
 /**
@@ -31,10 +30,13 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener{
 
     private IDatabaseManager databaseManager;
 
-    public ItemAddDialog(Context context) {
+    public ItemAddDialog(Context context, IDatabaseManager databaseManager) {
         super(context);
         this.context = context;
+        this.databaseManager = databaseManager;
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,10 +68,6 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener{
 
     private void initData() {
         detailsItemInput.setVisibility(View.GONE);
-
-        // init database manager
-        databaseManager = new DatabaseManager(context);
-
     }
 
 

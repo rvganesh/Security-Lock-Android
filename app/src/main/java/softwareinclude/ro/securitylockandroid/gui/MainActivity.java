@@ -6,18 +6,24 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import softwareinclude.ro.securitylockandroid.R;
 import softwareinclude.ro.securitylockandroid.dialog.ItemAddDialog;
+import softwareinclude.ro.securitylockandroid.interfaces.IDatabaseManager;
+import softwareinclude.ro.securitylockandroid.manager.DatabaseManager;
+import softwareinclude.ro.securitylockandroid.model.AccountDataModel;
 import softwareinclude.ro.securitylockandroid.util.ApplicationConstants;
 
 /**
@@ -55,6 +61,12 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private ImageButton addItem;
     //help buttons
     private Button lockOptions;
+    //List
+    private ListView accountItemListView;
+    private ArrayAdapter<String> accountItemsArrayAdapter ;
+    private List<String> accountList;
+
+    private IDatabaseManager databaseManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +74,10 @@ public class MainActivity extends Activity implements View.OnClickListener{
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+
+        // init database manager
+        databaseManager = new DatabaseManager(this);
+
 
         initUI();
         initData();
@@ -119,6 +135,15 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         lockOptions = (Button) findViewById(R.id.lockOptions);
         lockOptions.setOnClickListener(this);
+
+        accountItemListView = (ListView) findViewById(R.id.accountItemListView);
+        accountList = new ArrayList<String>();
+        List<AccountDataModel> databaseItemsList = databaseManager.loadListAccounts();
+        for(AccountDataModel dataModel : databaseItemsList){
+            accountList.add(dataModel.getAccountName());
+        }
+        accountItemsArrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, accountList);
+        accountItemListView.setAdapter( accountItemsArrayAdapter );
     }
 
     /**
@@ -278,7 +303,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
                                                                   && removePasswordLayout.getVisibility() == View.GONE){
                     hideLockIcon.setVisibility(View.VISIBLE);
                 }
-
                 break;
             }
 
@@ -309,7 +333,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             }
 
             case R.id.addItem: {
-                ItemAddDialog itemAddDialog = new ItemAddDialog(this);
+                ItemAddDialog itemAddDialog = new ItemAddDialog(this,databaseManager);
                 itemAddDialog.show();
                 break;
             }
@@ -319,4 +343,40 @@ public class MainActivity extends Activity implements View.OnClickListener{
             }
         }
     }
+
+    /**
+     * Called after your activity has been stopped, prior to it being started again.
+     * Always followed by onStart()
+     */
+    @Override
+    protected void onRestart() {
+        if (databaseManager == null)
+            databaseManager = new DatabaseManager(this);
+
+        super.onRestart();
+    }
+
+    /**
+     * Called after onRestoreInstanceState(Bundle), onRestart(), or onPause(), for your activity
+     * to start interacting with the user.
+     */
+    @Override
+    protected void onResume() {
+        // init database manager
+        databaseManager = DatabaseManager.getInstance(this);
+
+        super.onResume();
+    }
+
+    /**
+     * Called when you are no longer visible to the user.
+     */
+    @Override
+    protected void onStop() {
+        if (databaseManager != null)
+            databaseManager.closeDbConnections();
+
+        super.onStop();
+    }
+
 }

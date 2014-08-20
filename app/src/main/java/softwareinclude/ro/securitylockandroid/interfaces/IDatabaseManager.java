@@ -1,5 +1,7 @@
 package softwareinclude.ro.securitylockandroid.interfaces;
 
+import java.util.List;
+
 import softwareinclude.ro.securitylockandroid.model.AccountDataModel;
 
 /**
@@ -12,5 +14,7 @@ public interface IDatabaseManager {
     public void updateAccountDataItem();
     public void deleteAccountDataItem();
     public void findAccountById();
+    public List<AccountDataModel> loadListAccounts();
+
 
 }

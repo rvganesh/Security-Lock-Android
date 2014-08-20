@@ -8,324 +8,339 @@
         layout="@layout/main_activity_titlebar" />
 
     <RelativeLayout
-        android:id="@+id/lockStatusIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title_bar">
+        android:id="@+id/optionsParentLayout"
+        android:layout_below="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/lockStatusIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:background="#2A3949"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="10dip"
+                android:paddingTop="10dip">
+
+                <ImageButton
+                    android:id="@+id/addPasswordIcon"
+                    android:layout_width="60dip"
+                    android:layout_height="60dip"
+                    android:layout_marginRight="30dip"
+                    android:background="@drawable/lock_icon_green" />
+
+                <ImageButton
+                    android:id="@+id/changePasswordIcon"
+                    android:layout_width="60dip"
+                    android:layout_height="60dip"
+                    android:layout_marginRight="30dip"
+                    android:background="@drawable/lock_icon_yellow" />
+
+                <ImageButton
+                    android:id="@+id/removePasswordIcon"
+                    android:layout_width="60dip"
+                    android:layout_height="60dip"
+                    android:background="@drawable/lock_icon_red" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/hideLockIcon"
+                android:layout_width="35dip"
+                android:layout_height="30dip"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dip"
+                android:background="@drawable/up_arrow" />
+
+        </RelativeLayout>
+
+        <!-- Add Password -->
+
+        <RelativeLayout
+            android:id="@+id/addPasswordLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/lockStatusIcon"
+            android:background="#2A3949"
+            android:gravity="center">
 
+            <TableLayout
+                android:id="@+id/tableViewAddPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center">
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:text="Password"
+                        android:textColor="@color/WhiteSmoke" />
+
+                    <EditText
+                        android:id="@+id/addPasswordInput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="8"
+                        android:inputType="textPassword"
+                        android:textColor="@color/WhiteSmoke" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:text="Retype Password"
+                        android:textColor="@color/WhiteSmoke" />
+
+                    <EditText
+                        android:id="@+id/addRetypePasswordInput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="8"
+                        android:inputType="textPassword"
+                        android:textColor="@color/WhiteSmoke" />
+
+                </TableRow>
+            </TableLayout>
+
+            <Button
+                android:id="@+id/addPasswordDone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tableViewAddPassword"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/title_button_selector"
+                android:text="Done" />
+
+            <ImageButton
+                android:id="@+id/hideAddView"
+                android:layout_width="35dip"
+                android:layout_height="30dip"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/tableViewAddPassword"
+                android:layout_marginRight="5dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/up_arrow" />
+
+        </RelativeLayout>
+
+        <!-- Change Password -->
+
+        <RelativeLayout
+            android:id="@+id/changePasswordLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lockStatusIcon"
             android:background="#2A3949"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingBottom="10dip"
-            android:paddingTop="10dip">
+
+            android:orientation="vertical">
+
+            <TableLayout
+                android:id="@+id/tableViewChangePassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center">
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:text="Current Password"
+                        android:textColor="@color/WhiteSmoke" />
+
+                    <EditText
+                        android:id="@+id/changeCurrentPasswordInput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="8"
+                        android:inputType="textPassword"
+                        android:textColor="@color/WhiteSmoke" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:text="New Password"
+                        android:textColor="@color/WhiteSmoke" />
+
+                    <EditText
+                        android:id="@+id/changeNewPasswordInput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="8"
+                        android:inputType="textPassword"
+                        android:textColor="@color/WhiteSmoke" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:text="Retype Password"
+                        android:textColor="@color/WhiteSmoke" />
+
+                    <EditText
+                        android:id="@+id/changeRetypePasswordInput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="8"
+                        android:inputType="textPassword"
+                        android:textColor="@color/WhiteSmoke" />
+
+                </TableRow>
+
+            </TableLayout>
+
+            <Button
+                android:id="@+id/changePasswordDone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tableViewChangePassword"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/title_button_selector"
+                android:text="Change Password" />
 
             <ImageButton
-                android:id="@+id/addPasswordIcon"
-                android:layout_width="60dip"
-                android:layout_height="60dip"
-                android:layout_marginRight="30dip"
-                android:background="@drawable/lock_icon_green" />
+                android:id="@+id/hideChangeView"
+                android:layout_width="35dip"
+                android:layout_height="30dip"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/tableViewChangePassword"
+                android:layout_marginRight="5dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/up_arrow" />
+
+        </RelativeLayout>
+
+        <!-- Remove Password -->
+
+        <RelativeLayout
+            android:id="@+id/removePasswordLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lockStatusIcon"
+            android:background="#2A3949"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:id="@+id/tableLayoutRemovePassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center">
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:text="Current Password"
+                        android:textColor="@color/WhiteSmoke" />
+
+                    <EditText
+                        android:id="@+id/removePasswordInput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:ems="8"
+                        android:inputType="textPassword"
+                        android:textColor="@color/WhiteSmoke" />
+
+                </TableRow>
+
+            </TableLayout>
+
+            <Button
+                android:id="@+id/removePasswordDone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tableLayoutRemovePassword"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/title_button_selector"
+                android:text="Disable Password" />
 
             <ImageButton
-                android:id="@+id/changePasswordIcon"
-                android:layout_width="60dip"
-                android:layout_height="60dip"
-                android:layout_marginRight="30dip"
-                android:background="@drawable/lock_icon_yellow" />
+                android:id="@+id/hideRemoveView"
+                android:layout_width="35dip"
+                android:layout_height="30dip"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/tableLayoutRemovePassword"
+                android:layout_marginRight="5dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/up_arrow" />
 
-            <ImageButton
-                android:id="@+id/removePasswordIcon"
-                android:layout_width="60dip"
-                android:layout_height="60dip"
-                android:background="@drawable/lock_icon_red" />
-        </LinearLayout>
-
-        <ImageButton
-            android:id="@+id/hideLockIcon"
-            android:layout_width="35dip"
-            android:layout_height="30dip"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="5dip"
-            android:background="@drawable/up_arrow" />
-
+        </RelativeLayout>
     </RelativeLayout>
 
-    <!-- Add Password -->
-
-    <RelativeLayout
-        android:id="@+id/addPasswordLayout"
+    <ListView
+        android:id="@+id/accountItemListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lockStatusIcon"
-        android:background="#2A3949"
-        android:gravity="center">
+        android:layout_below="@+id/optionsParentLayout">
 
-        <TableLayout
-            android:id="@+id/tableViewAddPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center">
 
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|bottom"
-                    android:text="Password"
-                    android:textColor="@color/WhiteSmoke" />
-
-                <EditText
-                    android:id="@+id/addPasswordInput"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:ems="8"
-                    android:inputType="textPassword"
-                    android:textColor="@color/WhiteSmoke" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|bottom"
-                    android:text="Retype Password"
-                    android:textColor="@color/WhiteSmoke" />
-
-                <EditText
-                    android:id="@+id/addRetypePasswordInput"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:ems="8"
-                    android:inputType="textPassword"
-                    android:textColor="@color/WhiteSmoke" />
-
-            </TableRow>
-        </TableLayout>
-
-        <Button
-            android:id="@+id/addPasswordDone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tableViewAddPassword"
-            android:layout_centerInParent="true"
-            android:layout_marginBottom="10dip"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/title_button_selector"
-            android:text="Done" />
-
-        <ImageButton
-            android:id="@+id/hideAddView"
-            android:layout_width="35dip"
-            android:layout_height="30dip"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/tableViewAddPassword"
-            android:layout_marginRight="5dip"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/up_arrow" />
-
-    </RelativeLayout>
-
-    <!-- Change Password -->
-
-    <RelativeLayout
-        android:id="@+id/changePasswordLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lockStatusIcon"
-        android:background="#2A3949"
-        android:gravity="center"
-
-        android:orientation="vertical">
-
-        <TableLayout
-            android:id="@+id/tableViewChangePassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center">
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|bottom"
-                    android:text="Current Password"
-                    android:textColor="@color/WhiteSmoke" />
-
-                <EditText
-                    android:id="@+id/changeCurrentPasswordInput"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:ems="8"
-                    android:inputType="textPassword"
-                    android:textColor="@color/WhiteSmoke" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|bottom"
-                    android:text="New Password"
-                    android:textColor="@color/WhiteSmoke" />
-
-                <EditText
-                    android:id="@+id/changeNewPasswordInput"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:ems="8"
-                    android:inputType="textPassword"
-                    android:textColor="@color/WhiteSmoke" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|bottom"
-                    android:text="Retype Password"
-                    android:textColor="@color/WhiteSmoke" />
-
-                <EditText
-                    android:id="@+id/changeRetypePasswordInput"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:ems="8"
-                    android:inputType="textPassword"
-                    android:textColor="@color/WhiteSmoke" />
-
-            </TableRow>
-
-        </TableLayout>
-
-        <Button
-            android:id="@+id/changePasswordDone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tableViewChangePassword"
-            android:layout_centerInParent="true"
-            android:layout_marginBottom="10dip"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/title_button_selector"
-            android:text="Change Password" />
-
-        <ImageButton
-            android:id="@+id/hideChangeView"
-            android:layout_width="35dip"
-            android:layout_height="30dip"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/tableViewChangePassword"
-            android:layout_marginRight="5dip"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/up_arrow" />
-
-    </RelativeLayout>
-
-    <!-- Remove Password -->
-
-    <RelativeLayout
-        android:id="@+id/removePasswordLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lockStatusIcon"
-        android:background="#2A3949"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <TableLayout
-            android:id="@+id/tableLayoutRemovePassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center">
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|bottom"
-                    android:text="Current Password"
-                    android:textColor="@color/WhiteSmoke" />
-
-                <EditText
-                    android:id="@+id/removePasswordInput"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:ems="8"
-                    android:inputType="textPassword"
-                    android:textColor="@color/WhiteSmoke" />
-
-            </TableRow>
-
-        </TableLayout>
-
-        <Button
-            android:id="@+id/removePasswordDone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tableLayoutRemovePassword"
-            android:layout_centerInParent="true"
-            android:layout_marginBottom="10dip"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/title_button_selector"
-            android:text="Disable Password" />
-
-        <ImageButton
-            android:id="@+id/hideRemoveView"
-            android:layout_width="35dip"
-            android:layout_height="30dip"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/tableLayoutRemovePassword"
-            android:layout_marginRight="5dip"
-            android:layout_marginTop="10dip"
-            android:background="@drawable/up_arrow" />
-
-    </RelativeLayout>
+    </ListView>
 
 
 </RelativeLayout>
