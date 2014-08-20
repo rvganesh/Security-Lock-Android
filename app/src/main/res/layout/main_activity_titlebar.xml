@@ -4,12 +4,11 @@
     android:layout_height="wrap_content"
     android:background="#2A3949">
     <Button
-        android:id="@+id/helpButton"
-        android:layout_width="wrap_content"
+        android:id="@+id/lockOptions"
+        android:layout_width="40dip"
         android:layout_height="40dip"
-        android:text="Help"
         android:layout_margin="5dip"
-        android:background="@drawable/title_button_selector"
+        android:background="@drawable/settings_icon"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         />
@@ -26,11 +25,11 @@
         />
 
     <ImageButton
-        android:id="@+id/showLockOptions"
+        android:id="@+id/addItem"
         android:layout_width="35dip"
-        android:layout_height="30dip"
+        android:layout_height="35dip"
         android:layout_margin="5dip"
-        android:background="@drawable/down_arrow"
+        android:background="@drawable/add_icon"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         />

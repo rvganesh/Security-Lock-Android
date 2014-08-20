@@ -20,6 +20,9 @@ import android.widget.ImageView;
 import softwareinclude.ro.securitylockandroid.R;
 import softwareinclude.ro.securitylockandroid.util.ApplicationConstants;
 
+/**
+ * @author Sebastian Manolescu
+ */
 public class LockScreen extends Activity implements View.OnClickListener{
 
     private EditText passwordInput;

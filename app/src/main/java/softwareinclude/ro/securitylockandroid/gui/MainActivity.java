@@ -17,10 +17,11 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import softwareinclude.ro.securitylockandroid.R;
+import softwareinclude.ro.securitylockandroid.dialog.ItemAddDialog;
 import softwareinclude.ro.securitylockandroid.util.ApplicationConstants;
 
 /**
- * @author Manolescu Sebastian
+ * @author Sebastian Manolescu
  */
 public class MainActivity extends Activity implements View.OnClickListener{
 
@@ -51,9 +52,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private ImageButton hideChangeView;
     private ImageButton hideRemoveView;
     //show option
-    private ImageButton showLockOptions;
+    private ImageButton addItem;
     //help buttons
-    private Button helpButton;
+    private Button lockOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,12 +114,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
         hideRemoveView.setOnClickListener(this);
 
         //Show Views
-        showLockOptions = (ImageButton) findViewById(R.id.showLockOptions);
-        showLockOptions.setVisibility(View.GONE);
-        showLockOptions.setOnClickListener(this);
+        addItem = (ImageButton) findViewById(R.id.addItem);
+        addItem.setOnClickListener(this);
 
-        helpButton = (Button) findViewById(R.id.helpButton);
-        helpButton.setOnClickListener(this);
+        lockOptions = (Button) findViewById(R.id.lockOptions);
+        lockOptions.setOnClickListener(this);
     }
 
     /**
@@ -272,14 +272,18 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 break;
             }
 
-            case R.id.helpButton: {
-                Toast.makeText(this,"Help in progress",Toast.LENGTH_SHORT).show();
+            case R.id.lockOptions: {
+                    lockStatusIcon.setVisibility(View.VISIBLE);
+                if(addPasswordLayout.getVisibility() == View.GONE && changePasswordLayout.getVisibility() == View.GONE
+                                                                  && removePasswordLayout.getVisibility() == View.GONE){
+                    hideLockIcon.setVisibility(View.VISIBLE);
+                }
+
                 break;
             }
 
             case R.id.hideLockIcon: {
                 lockStatusIcon.setVisibility(View.GONE);
-                showLockOptions.setVisibility(View.VISIBLE);
                 break;
             }
 
@@ -304,10 +308,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 break;
             }
 
-            case R.id.showLockOptions: {
-                lockStatusIcon.setVisibility(View.VISIBLE);
-                showLockOptions.setVisibility(View.GONE);
-                hideLockIcon.setVisibility(View.VISIBLE);
+            case R.id.addItem: {
+                ItemAddDialog itemAddDialog = new ItemAddDialog(this);
+                itemAddDialog.show();
                 break;
             }
 

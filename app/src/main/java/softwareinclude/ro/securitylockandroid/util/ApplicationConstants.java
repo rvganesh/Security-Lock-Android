@@ -1,7 +1,7 @@
 package softwareinclude.ro.securitylockandroid.util;
 
 /**
- * Created by sema9419 on 19.08.2014.
+ * Created by Sebastian Manolescu on 19.08.2014.
  */
 public class ApplicationConstants {
 
