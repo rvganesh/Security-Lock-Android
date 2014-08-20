@@ -33,7 +33,7 @@
                 android:textColor="@color/WhiteSmoke" />
 
             <EditText
-                android:id="@+id/appItemName"
+                android:id="@+id/accountItemName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -58,7 +58,7 @@
                     android:textColor="@color/WhiteSmoke" />
 
                 <EditText
-                    android:id="@+id/appItemPassword"
+                    android:id="@+id/accountItemPassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -68,14 +68,52 @@
             </TableRow>
     </TableLayout>
 
-    <TextView
+
+    <EditText
+        android:id="@+id/detailsItemInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tableviewItemAdd"
-        android:gravity="center"
+        android:layout_gravity="center"
+        android:maxLines="5"
+        android:inputType="text"
         android:layout_centerInParent="true"
-        android:padding="40dip"
-        android:text="Insert application/account name and application password"/>
+        android:layout_marginRight="40dip"
+        android:layout_marginLeft="40dip"
+        android:layout_marginTop="10dip"
+        android:layout_marginBottom="40dip"
+        android:hint="Other Details"
+        android:textSize="14sp"
+        android:layout_below="@+id/tableviewItemAdd"
+        android:textColor="@color/WhiteSmoke" />
 
+
+    <LinearLayout
+        android:id="@+id/addDetailsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:paddingBottom="40dip"
+        android:layout_below="@+id/tableviewItemAdd">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:text="Other Details"
+            android:layout_marginRight="10dip"
+            android:layout_below="@+id/tableviewItemAdd"
+            android:textColor="@color/WhiteSmoke" />
+
+        <ImageButton
+            android:id="@+id/addDetailsItem"
+            android:layout_width="35dip"
+            android:layout_height="35dip"
+            android:layout_below="@+id/tableviewItemAdd"
+            android:background="@drawable/details_icon"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dip"
+            />
+
+        </LinearLayout>
 
 </RelativeLayout>
