@@ -15,7 +15,7 @@ import softwareinclude.ro.securitylockandroid.model.DaoMaster;
 import softwareinclude.ro.securitylockandroid.model.DaoSession;
 
 /**
- * Created by sema9419 on 20.08.2014.
+ * Created by Sebastian Manolescu on 20.08.2014.
  */
 public class DatabaseManager implements IDatabaseManager {
 

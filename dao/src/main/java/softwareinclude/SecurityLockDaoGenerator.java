@@ -27,9 +27,9 @@ public class SecurityLockDaoGenerator {
     private static void createSchema(Schema schema) {
         Entity accountDataModel = schema.addEntity("AccountDataModel");
         accountDataModel.addIdProperty().primaryKey().autoincrement();
-        accountDataModel.addStringProperty("accountName").notNull().notNull();
-        accountDataModel.addStringProperty("accountPassword").notNull();
-        accountDataModel.addStringProperty("accountDetails").notNull();
+        accountDataModel.addStringProperty("accountName");
+        accountDataModel.addStringProperty("accountPassword");
+        accountDataModel.addStringProperty("accountDetails");
     }
 
 

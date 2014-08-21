@@ -78,6 +78,7 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener{
     }
 
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -93,13 +94,25 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener{
 
                 //Insert new AccountDataModel object in Database
                 AccountDataModel accountData = new AccountDataModel();
-                accountData.setAccountName(accountItemName.getText().toString());
-                accountData.setAccountPassword(accountItemPassword.getText().toString());
-                if(detailsItemInput.isEnabled()){
-                    accountData.setAccountDetails("Test");
-                }else {
-                    accountData.setAccountDetails(detailsItemInput.getText().toString());
+
+                String accountName = accountItemName.getText().toString();
+                String accountPassword = accountItemPassword.getText().toString();
+
+                if(!accountName.isEmpty()){
+                    accountData.setAccountName(accountName);
+                }else{
+                    accountItemName.setError("Empty");
+                    break;
                 }
+
+                if(!accountPassword.isEmpty()){
+                    accountData.setAccountPassword(accountPassword);
+                }else{
+                    accountItemPassword.setError("Empty");
+                    break;
+                }
+
+                accountData.setAccountDetails(detailsItemInput.getText().toString());
 
                 databaseManager.insertAccountDataItem(accountData);
                 databaseItemsList.add(accountData);

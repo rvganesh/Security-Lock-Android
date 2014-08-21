@@ -41,9 +41,9 @@ public class AccountDataModelDao extends AbstractDao<AccountDataModel, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'ACCOUNT_DATA_MODEL' (" + //
                 "'_id' INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
-                "'ACCOUNT_NAME' TEXT NOT NULL ," + // 1: accountName
-                "'ACCOUNT_PASSWORD' TEXT NOT NULL ," + // 2: accountPassword
-                "'ACCOUNT_DETAILS' TEXT NOT NULL );"); // 3: accountDetails
+                "'ACCOUNT_NAME' TEXT," + // 1: accountName
+                "'ACCOUNT_PASSWORD' TEXT," + // 2: accountPassword
+                "'ACCOUNT_DETAILS' TEXT);"); // 3: accountDetails
     }
 
     /** Drops the underlying database table. */
@@ -61,9 +61,21 @@ public class AccountDataModelDao extends AbstractDao<AccountDataModel, Long> {
         if (id != null) {
             stmt.bindLong(1, id);
         }
-        stmt.bindString(2, entity.getAccountName());
-        stmt.bindString(3, entity.getAccountPassword());
-        stmt.bindString(4, entity.getAccountDetails());
+ 
+        String accountName = entity.getAccountName();
+        if (accountName != null) {
+            stmt.bindString(2, accountName);
+        }
+ 
+        String accountPassword = entity.getAccountPassword();
+        if (accountPassword != null) {
+            stmt.bindString(3, accountPassword);
+        }
+ 
+        String accountDetails = entity.getAccountDetails();
+        if (accountDetails != null) {
+            stmt.bindString(4, accountDetails);
+        }
     }
 
     /** @inheritdoc */
@@ -77,9 +89,9 @@ public class AccountDataModelDao extends AbstractDao<AccountDataModel, Long> {
     public AccountDataModel readEntity(Cursor cursor, int offset) {
         AccountDataModel entity = new AccountDataModel( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.getString(offset + 1), // accountName
-            cursor.getString(offset + 2), // accountPassword
-            cursor.getString(offset + 3) // accountDetails
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // accountName
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // accountPassword
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3) // accountDetails
         );
         return entity;
     }
@@ -88,9 +100,9 @@ public class AccountDataModelDao extends AbstractDao<AccountDataModel, Long> {
     @Override
     public void readEntity(Cursor cursor, AccountDataModel entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setAccountName(cursor.getString(offset + 1));
-        entity.setAccountPassword(cursor.getString(offset + 2));
-        entity.setAccountDetails(cursor.getString(offset + 3));
+        entity.setAccountName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setAccountPassword(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setAccountDetails(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
      }
     
     /** @inheritdoc */
