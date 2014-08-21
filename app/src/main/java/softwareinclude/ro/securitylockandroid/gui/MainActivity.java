@@ -78,7 +78,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
         // init database manager
         databaseManager = new DatabaseManager(this);
 
-
         initUI();
         initData();
     }
@@ -138,7 +137,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         accountItemListView = (ListView) findViewById(R.id.accountItemListView);
         databaseItemsList = databaseManager.loadListAccounts();
-        accountItemAdapter = new AccountItemAdapter(this,databaseItemsList,databaseManager);
+        accountItemAdapter = new AccountItemAdapter(MainActivity.this,databaseItemsList,databaseManager);
         accountItemListView.setAdapter( accountItemAdapter );
     }
 
