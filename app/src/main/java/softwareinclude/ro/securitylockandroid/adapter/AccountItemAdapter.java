@@ -20,7 +20,7 @@ import softwareinclude.ro.securitylockandroid.popup.AccountDetailsPopup;
 /**
  * Created by Sebastian Manolescu on 21.08.2014.
  */
-public class AccountItemAdapter extends ArrayAdapter<AccountDataModel>{
+public class AccountItemAdapter extends ArrayAdapter<AccountDataModel> {
 
     private Activity context;
     private List<AccountDataModel> accountDataModel;
@@ -31,10 +31,11 @@ public class AccountItemAdapter extends ArrayAdapter<AccountDataModel>{
 
     /**
      * Adapter constructor
+     *
      * @param context
      * @param accountDataModel
      */
-    public AccountItemAdapter(Activity context, List<AccountDataModel> accountDataModel,IDatabaseManager databaseManager) {
+    public AccountItemAdapter(Activity context, List<AccountDataModel> accountDataModel, IDatabaseManager databaseManager) {
         super(context, R.layout.account_item_element, accountDataModel);
         this.context = context;
         this.accountDataModel = accountDataModel;
@@ -42,30 +43,31 @@ public class AccountItemAdapter extends ArrayAdapter<AccountDataModel>{
     }
 
     /**
-     *  getView method is called for each item of ListView
+     * getView method is called for each item of ListView
      */
-    public View getView(int position,  View convertView , ViewGroup parent){
+    public View getView(int position, View convertView, ViewGroup parent) {
 
         AccountDataModel accountObject = accountDataModel.get(position);
 
 
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.account_item_element, null);
-            holder = new ViewHolder();
-            initUI(holder, convertView,accountObject);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        convertView = inflater.inflate(R.layout.account_item_element, null);
+        holder = new ViewHolder();
+        initUI(holder, convertView, accountObject);
 
-        return convertView ;
+        return convertView;
     }
 
     /**
      * Init List Element components and click action on remove icon
+     *
      * @param holder
      * @param convertView
      * @param accountObject
      */
-    private void initUI(final ViewHolder holder,View convertView, final AccountDataModel accountObject) {
-        holder.elementItemName = (TextView)convertView.findViewById(R.id.elementItemName);
-        holder.removeItemElement = (ImageButton)convertView.findViewById(R.id.removeItemElement);
+    private void initUI(final ViewHolder holder, View convertView, final AccountDataModel accountObject) {
+        holder.elementItemName = (TextView) convertView.findViewById(R.id.elementItemName);
+        holder.removeItemElement = (ImageButton) convertView.findViewById(R.id.removeItemElement);
         holder.elementItemName.setText(accountObject.getAccountName());
 
         //Event Action on TextView
@@ -105,14 +107,12 @@ public class AccountItemAdapter extends ArrayAdapter<AccountDataModel>{
     }
 
 
-
     /**
      * View Holder contains UI components
      */
-    static class ViewHolder
-    {
-         TextView elementItemName;
-         ImageButton removeItemElement;
+    static class ViewHolder {
+        TextView elementItemName;
+        ImageButton removeItemElement;
 
     }
 }

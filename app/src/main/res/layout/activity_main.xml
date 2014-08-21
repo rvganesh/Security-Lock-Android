@@ -9,9 +9,9 @@
 
     <RelativeLayout
         android:id="@+id/optionsParentLayout"
-        android:layout_below="@+id/title_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_bar">
 
         <RelativeLayout
             android:id="@+id/lockStatusIcon"

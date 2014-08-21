@@ -18,7 +18,7 @@ import softwareinclude.ro.securitylockandroid.model.AccountDataModel;
 /**
  * Created by Sebastian Manolescu on 21.08.2014.
  */
-public class AccountDetailsPopup extends PopupWindow{
+public class AccountDetailsPopup extends PopupWindow {
 
     private Activity context;
     private TextView detailsPopupAccountName;
@@ -27,7 +27,7 @@ public class AccountDetailsPopup extends PopupWindow{
     private int locationOnScreenHeight;
     private AccountDataModel accountObject;
 
-    public AccountDetailsPopup(Activity context, int locationOnScreenHeight, AccountDataModel accountObject){
+    public AccountDetailsPopup(Activity context, int locationOnScreenHeight, AccountDataModel accountObject) {
         this.context = context;
         this.locationOnScreenHeight = locationOnScreenHeight;
         this.accountObject = accountObject;
@@ -57,7 +57,7 @@ public class AccountDetailsPopup extends PopupWindow{
 
 
         //Popup Width and height
-        int popupWidth = width/(5/2);
+        int popupWidth = width / (5 / 2);
         int popupHeight = height / 3;
 
         setContentView(layout);
@@ -69,16 +69,16 @@ public class AccountDetailsPopup extends PopupWindow{
         this.setOutsideTouchable(true);
 
         // Displaying the popup at the specified location, + offsets if any.
-         showAtLocation(layout, Gravity.NO_GRAVITY, width/2 - popupWidth/2 , locationOnScreenHeight);
+        showAtLocation(layout, Gravity.NO_GRAVITY, width / 2 - popupWidth / 2, locationOnScreenHeight);
     }
 
     /**
      * Init UI components
      */
     public void initUI(View layout) {
-        detailsPopupAccountName = (TextView)layout.findViewById(R.id.detailsPopupAccountName);
-        detailsPopupAccountPassword = (TextView)layout.findViewById(R.id.detailsPopupAccountPassword);
-        detailsPopupAccount = (TextView)layout.findViewById(R.id.detailsPopupAccount);
+        detailsPopupAccountName = (TextView) layout.findViewById(R.id.detailsPopupAccountName);
+        detailsPopupAccountPassword = (TextView) layout.findViewById(R.id.detailsPopupAccountPassword);
+        detailsPopupAccount = (TextView) layout.findViewById(R.id.detailsPopupAccount);
 
         detailsPopupAccountName.setText(accountObject.getAccountName().toString());
         detailsPopupAccountPassword.setText(accountObject.getAccountPassword().toString());
@@ -89,7 +89,6 @@ public class AccountDetailsPopup extends PopupWindow{
      * Initialize components with data from the account objects
      */
     public void initData() {
-
 
 
     }

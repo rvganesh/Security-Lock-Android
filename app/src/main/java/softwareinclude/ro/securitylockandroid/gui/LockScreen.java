@@ -8,8 +8,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -23,7 +21,7 @@ import softwareinclude.ro.securitylockandroid.util.ApplicationConstants;
 /**
  * @author Sebastian Manolescu
  */
-public class LockScreen extends Activity implements View.OnClickListener{
+public class LockScreen extends Activity implements View.OnClickListener {
 
     private EditText passwordInput;
     private Button unlock;
@@ -47,7 +45,7 @@ public class LockScreen extends Activity implements View.OnClickListener{
      */
     public void initUI() {
         lockImage = (ImageView) findViewById(R.id.lockImage);
-        passwordInput = (EditText)findViewById(R.id.passwordInput);
+        passwordInput = (EditText) findViewById(R.id.passwordInput);
         unlock = (Button) findViewById(R.id.applicationUnlock);
         unlock.setOnClickListener(this);
     }
@@ -56,11 +54,12 @@ public class LockScreen extends Activity implements View.OnClickListener{
      * Init Data or Set Data for this application
      */
     public void initData() {
-        loadPasswordSharedPref =  loadPasswordPref(ApplicationConstants.SHARED_PREFERENCES_PASSWORD,this);
+        loadPasswordSharedPref = loadPasswordPref(ApplicationConstants.SHARED_PREFERENCES_PASSWORD, this);
     }
 
     /**
      * Load Password from SharedPreferences
+     *
      * @param key
      * @param context
      * @return
@@ -86,20 +85,21 @@ public class LockScreen extends Activity implements View.OnClickListener{
             @Override
             public void onAnimationEnd(Animator animation) {
                 finish();
-            }});
+            }
+        });
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.applicationUnlock: {
-               String currentInputPassword = passwordInput.getText().toString();
-                if(passwordInput.getText().toString().isEmpty()){
+                String currentInputPassword = passwordInput.getText().toString();
+                if (passwordInput.getText().toString().isEmpty()) {
                     passwordInput.setError("Empty");
                     break;
                 }
-                if(!currentInputPassword.equals(loadPasswordSharedPref)){
+                if (!currentInputPassword.equals(loadPasswordSharedPref)) {
                     passwordInput.setError("Wrong Password");
                     break;
                 }

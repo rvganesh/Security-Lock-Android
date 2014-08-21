@@ -20,7 +20,7 @@ import softwareinclude.ro.securitylockandroid.model.AccountDataModel;
 /**
  * Created by Sebastian Manolescu on 20.08.2014.
  */
-public class ItemAddDialog extends Dialog implements View.OnClickListener{
+public class ItemAddDialog extends Dialog implements View.OnClickListener {
 
     private Context context;
     private Button cancelAdd;
@@ -35,7 +35,7 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener{
     private AccountItemAdapter accountItemAdapter;
     List<AccountDataModel> databaseItemsList;
 
-    public ItemAddDialog(Context context, IDatabaseManager databaseManager,AccountItemAdapter accountItemAdapter, List<AccountDataModel> databaseItemsList) {
+    public ItemAddDialog(Context context, IDatabaseManager databaseManager, AccountItemAdapter accountItemAdapter, List<AccountDataModel> databaseItemsList) {
         super(context);
         this.context = context;
         this.databaseManager = databaseManager;
@@ -53,7 +53,7 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener{
         initData();
     }
 
-    private void initUI(){
+    private void initUI() {
         cancelAdd = (Button) findViewById(R.id.cancelAdd);
         cancelAdd.setOnClickListener(this);
         doneAdd = (Button) findViewById(R.id.doneAdd);
@@ -74,7 +74,6 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener{
     }
 
 
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -91,16 +90,16 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener{
                 String accountName = accountItemName.getText().toString();
                 String accountPassword = accountItemPassword.getText().toString();
 
-                if(!accountName.isEmpty()){
+                if (!accountName.isEmpty()) {
                     accountData.setAccountName(accountName);
-                }else{
+                } else {
                     accountItemName.setError("Empty");
                     break;
                 }
 
-                if(!accountPassword.isEmpty()){
+                if (!accountPassword.isEmpty()) {
                     accountData.setAccountPassword(accountPassword);
-                }else{
+                } else {
                     accountItemPassword.setError("Empty");
                     break;
                 }

@@ -28,8 +28,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|bottom"
-                android:text="Account Name"
                 android:layout_marginRight="10dip"
+                android:text="Account Name"
                 android:textColor="@color/WhiteSmoke" />
 
             <EditText
@@ -43,29 +43,29 @@
 
         </TableRow>
 
-            <TableRow
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:gravity="center">
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:gravity="center">
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginRight="10dip"
+                android:text="Password"
+                android:textColor="@color/WhiteSmoke" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|bottom"
-                    android:text="Password"
-                    android:layout_marginRight="10dip"
-                    android:textColor="@color/WhiteSmoke" />
-
-                <EditText
-                    android:id="@+id/accountItemPassword"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:ems="8"
-                    android:inputType="textPassword"
-                    android:textColor="@color/WhiteSmoke" />
-            </TableRow>
+            <EditText
+                android:id="@+id/accountItemPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="8"
+                android:inputType="textPassword"
+                android:textColor="@color/WhiteSmoke" />
+        </TableRow>
     </TableLayout>
 
 
@@ -73,35 +73,35 @@
         android:id="@+id/detailsItemInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:maxLines="5"
-        android:inputType="text"
-        android:layout_centerInParent="true"
-        android:layout_marginRight="40dip"
-        android:layout_marginLeft="40dip"
-        android:layout_marginTop="10dip"
-        android:layout_marginBottom="40dip"
-        android:hint="Other Details"
-        android:textSize="14sp"
         android:layout_below="@+id/tableviewItemAdd"
-        android:textColor="@color/WhiteSmoke" />
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="40dip"
+        android:layout_marginLeft="40dip"
+        android:layout_marginRight="40dip"
+        android:layout_marginTop="10dip"
+        android:hint="Other Details"
+        android:inputType="text"
+        android:maxLines="5"
+        android:textColor="@color/WhiteSmoke"
+        android:textSize="14sp" />
 
 
     <LinearLayout
         android:id="@+id/addDetailsLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tableviewItemAdd"
         android:layout_centerInParent="true"
-        android:paddingBottom="40dip"
-        android:layout_below="@+id/tableviewItemAdd">
+        android:paddingBottom="40dip">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|bottom"
-            android:text="Other Details"
-            android:layout_marginRight="10dip"
             android:layout_below="@+id/tableviewItemAdd"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginRight="10dip"
+            android:text="Other Details"
             android:textColor="@color/WhiteSmoke" />
 
         <ImageButton
@@ -109,11 +109,10 @@
             android:layout_width="35dip"
             android:layout_height="35dip"
             android:layout_below="@+id/tableviewItemAdd"
-            android:background="@drawable/details_icon"
             android:layout_centerInParent="true"
             android:layout_marginTop="20dip"
-            />
+            android:background="@drawable/details_icon" />
 
-        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>

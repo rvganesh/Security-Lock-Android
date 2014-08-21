@@ -9,21 +9,19 @@
         android:id="@+id/elementItemName"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="8"
         android:layout_gravity="center_vertical"
-        android:gravity="center_vertical"
         android:layout_marginLeft="15dip"
+        android:layout_weight="8"
+        android:gravity="center_vertical"
         android:text="Gmail Application"
         android:textSize="17sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <ImageButton
         android:id="@+id/removeItemElement"
         android:layout_width="40dip"
         android:layout_height="40dip"
         android:layout_margin="10dip"
-        android:background="@drawable/trash_icon"
-        />
+        android:background="@drawable/trash_icon" />
 
 </LinearLayout>

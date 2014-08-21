@@ -28,7 +28,7 @@ import softwareinclude.ro.securitylockandroid.util.ApplicationConstants;
 /**
  * @author Sebastian Manolescu
  */
-public class MainActivity extends Activity implements View.OnClickListener{
+public class MainActivity extends Activity implements View.OnClickListener {
 
     //Lock Icon
     private ImageButton addPassword;
@@ -137,8 +137,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
         accountItemListView = (ListView) findViewById(R.id.accountItemListView);
         databaseItemsList = databaseManager.loadListAccounts();
-        accountItemAdapter = new AccountItemAdapter(MainActivity.this,databaseItemsList,databaseManager);
-        accountItemListView.setAdapter( accountItemAdapter );
+        accountItemAdapter = new AccountItemAdapter(MainActivity.this, databaseItemsList, databaseManager);
+        accountItemListView.setAdapter(accountItemAdapter);
     }
 
     /**
@@ -149,8 +149,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
         changePasswordLayout.setVisibility(View.GONE);
         removePasswordLayout.setVisibility(View.GONE);
 
-        String currentPassword = loadPasswordPref(ApplicationConstants.SHARED_PREFERENCES_PASSWORD,this);
-        if(currentPassword != null && !currentPassword.isEmpty()){
+        String currentPassword = loadPasswordPref(ApplicationConstants.SHARED_PREFERENCES_PASSWORD, this);
+        if (currentPassword != null && !currentPassword.isEmpty()) {
             Intent lockScreenIntent = new Intent(MainActivity.this, LockScreen.class);
             startActivity(lockScreenIntent);
         }
@@ -158,6 +158,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     /**
      * Save Password in SharedPreferences
+     *
      * @param key
      * @param value
      * @param context
@@ -171,6 +172,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     /**
      * Load Password from SharedPreferences
+     *
      * @param key
      * @param context
      * @return
@@ -195,11 +197,12 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     /**
      * Check if EditText input is empty
+     *
      * @param edittext
      * @return
      */
-    private boolean emptyInputCheck(EditText edittext){
-        if(edittext.getText().toString().isEmpty()){
+    private boolean emptyInputCheck(EditText edittext) {
+        if (edittext.getText().toString().isEmpty()) {
             edittext.setError("Empty");
             return true;
         }
@@ -209,7 +212,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             //Green Icon
             case R.id.addPasswordIcon: {
                 addPasswordLayout.setVisibility(View.VISIBLE);
@@ -241,16 +244,16 @@ public class MainActivity extends Activity implements View.OnClickListener{
             //ADD APPLICATION SECURITY PASSWORD
             case R.id.addPasswordDone: {
                 //check if fields are empty
-                if(addPasswordInput == null || addPasswordInput==null ||
-                   emptyInputCheck(addPasswordInput) || emptyInputCheck(addRetypePasswordInput)){
+                if (addPasswordInput == null || addPasswordInput == null ||
+                        emptyInputCheck(addPasswordInput) || emptyInputCheck(addRetypePasswordInput)) {
                     break;
                 }
                 //check if password match and save in SharedPreferences
-                if(addPasswordInput.getText().toString().equals(addRetypePasswordInput.getText().toString())){
-                    savePasswordPref(ApplicationConstants.SHARED_PREFERENCES_PASSWORD,addPasswordInput.getText().toString(),this);
+                if (addPasswordInput.getText().toString().equals(addRetypePasswordInput.getText().toString())) {
+                    savePasswordPref(ApplicationConstants.SHARED_PREFERENCES_PASSWORD, addPasswordInput.getText().toString(), this);
                     addPasswordLayout.setVisibility(View.GONE);
                     hideLockIcon.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     addRetypePasswordInput.setError("Please Retype the same password as above");
                 }
                 break;
@@ -259,23 +262,23 @@ public class MainActivity extends Activity implements View.OnClickListener{
             //ADD CHANGE SECURITY PASSWORD
             case R.id.changePasswordDone: {
                 //Check for null or empty fields
-                if(emptyInputCheck(changePasswordCurrentInput) || emptyInputCheck(changePasswordNewInput)
-                                                               || emptyInputCheck(changePasswordRetypeInput)){
+                if (emptyInputCheck(changePasswordCurrentInput) || emptyInputCheck(changePasswordNewInput)
+                        || emptyInputCheck(changePasswordRetypeInput)) {
                     break;
                 }
                 //check current password if valid
-                String password = loadPasswordPref(ApplicationConstants.SHARED_PREFERENCES_PASSWORD,this);
-                if(!changePasswordCurrentInput.getText().toString().equals(password)){
+                String password = loadPasswordPref(ApplicationConstants.SHARED_PREFERENCES_PASSWORD, this);
+                if (!changePasswordCurrentInput.getText().toString().equals(password)) {
                     changePasswordCurrentInput.setError("Invalid Password");
                     break;
                 }
                 //check password match
-                if(!changePasswordNewInput.getText().toString().equals(changePasswordRetypeInput.getText().toString())){
+                if (!changePasswordNewInput.getText().toString().equals(changePasswordRetypeInput.getText().toString())) {
                     changePasswordRetypeInput.setError("Please Retype the same password as above");
                     break;
                 }
                 //save new password in SharedPreferences
-                savePasswordPref(ApplicationConstants.SHARED_PREFERENCES_PASSWORD,changePasswordNewInput.getText().toString(),this);
+                savePasswordPref(ApplicationConstants.SHARED_PREFERENCES_PASSWORD, changePasswordNewInput.getText().toString(), this);
 
                 changePasswordLayout.setVisibility(View.GONE);
                 hideLockIcon.setVisibility(View.VISIBLE);
@@ -287,18 +290,18 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
                 String applicationPassword = removePasswordInput.getText().toString();
 
-                if(applicationPassword.isEmpty()){
+                if (applicationPassword.isEmpty()) {
                     removePasswordInput.setError("Empty");
                     break;
                 }
 
                 //Disable password security
-                String password = loadPasswordPref(ApplicationConstants.SHARED_PREFERENCES_PASSWORD,this);
-                if(applicationPassword.equals(password)){
-                    savePasswordPref(ApplicationConstants.SHARED_PREFERENCES_PASSWORD,ApplicationConstants.EMPTY,this);
+                String password = loadPasswordPref(ApplicationConstants.SHARED_PREFERENCES_PASSWORD, this);
+                if (applicationPassword.equals(password)) {
+                    savePasswordPref(ApplicationConstants.SHARED_PREFERENCES_PASSWORD, ApplicationConstants.EMPTY, this);
                     removePasswordLayout.setVisibility(View.GONE);
                     hideLockIcon.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     removePasswordInput.setError("Wrong Password");
                 }
                 break;
@@ -306,9 +309,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
             //WHEEL ICON - LEFT CORNER TOP
             case R.id.lockOptions: {
-                    lockStatusIcon.setVisibility(View.VISIBLE);
-                if(addPasswordLayout.getVisibility() == View.GONE && changePasswordLayout.getVisibility() == View.GONE
-                                                                  && removePasswordLayout.getVisibility() == View.GONE){
+                lockStatusIcon.setVisibility(View.VISIBLE);
+                if (addPasswordLayout.getVisibility() == View.GONE && changePasswordLayout.getVisibility() == View.GONE
+                        && removePasswordLayout.getVisibility() == View.GONE) {
                     hideLockIcon.setVisibility(View.VISIBLE);
                 }
                 break;
@@ -346,7 +349,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
             //ICON LEFT TOP
             case R.id.addItem: {
-                ItemAddDialog itemAddDialog = new ItemAddDialog(this,databaseManager,accountItemAdapter,databaseItemsList);
+                ItemAddDialog itemAddDialog = new ItemAddDialog(this, databaseManager, accountItemAdapter, databaseItemsList);
                 itemAddDialog.show();
                 break;
             }

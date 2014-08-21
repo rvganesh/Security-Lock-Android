@@ -16,17 +16,19 @@ public interface IDatabaseManager {
 
     /**
      * Add New Account Item
+     *
      * @param accountData
      */
     public void insertAccountDataItem(AccountDataModel accountData);
 
     /**
-     *Update Account item in DB
+     * Update Account item in DB
      */
     public void updateAccountDataItem();
 
     /**
      * Delete Account Item
+     *
      * @param accountData
      */
     public void deleteAccountDataItem(AccountDataModel accountData);
@@ -38,6 +40,7 @@ public interface IDatabaseManager {
 
     /**
      * Load All Account type Objects from Database
+     *
      * @return
      */
     public List<AccountDataModel> loadListAccounts();
