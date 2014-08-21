@@ -43,8 +43,6 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener{
         this.databaseItemsList = databaseItemsList;
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +54,6 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener{
     }
 
     private void initUI(){
-
         cancelAdd = (Button) findViewById(R.id.cancelAdd);
         cancelAdd.setOnClickListener(this);
         doneAdd = (Button) findViewById(R.id.doneAdd);
@@ -70,7 +67,6 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener{
         addDetailsItem.setOnClickListener(this);
 
         addDetailsLayout = (LinearLayout) findViewById(R.id.addDetailsLayout);
-
     }
 
     private void initData() {
@@ -84,14 +80,11 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener{
         switch (v.getId()) {
 
             case R.id.cancelAdd: {
-                accountItemAdapter.setNotifyOnChange(true);
-                accountItemAdapter.notifyDataSetChanged();
                 dismiss();
                 break;
             }
 
             case R.id.doneAdd: {
-
                 //Insert new AccountDataModel object in Database
                 AccountDataModel accountData = new AccountDataModel();
 
@@ -113,7 +106,7 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener{
                 }
 
                 accountData.setAccountDetails(detailsItemInput.getText().toString());
-
+                //Insert Data in DB and show element in list
                 databaseManager.insertAccountDataItem(accountData);
                 databaseItemsList.add(accountData);
                 accountItemAdapter.notifyDataSetChanged();

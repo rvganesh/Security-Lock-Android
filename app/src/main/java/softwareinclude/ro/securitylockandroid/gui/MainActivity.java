@@ -211,7 +211,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch(v.getId()){
-
+            //Green Icon
             case R.id.addPasswordIcon: {
                 addPasswordLayout.setVisibility(View.VISIBLE);
                 changePasswordLayout.setVisibility(View.GONE);
@@ -220,7 +220,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 clearInputData();
                 break;
             }
-
+            //Yellow icon
             case R.id.changePasswordIcon: {
                 addPasswordLayout.setVisibility(View.GONE);
                 changePasswordLayout.setVisibility(View.VISIBLE);
@@ -229,7 +229,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 clearInputData();
                 break;
             }
-
+            //Red Icon
             case R.id.removePasswordIcon: {
                 addPasswordLayout.setVisibility(View.GONE);
                 changePasswordLayout.setVisibility(View.GONE);
@@ -239,6 +239,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 break;
             }
 
+            //ADD APPLICATION SECURITY PASSWORD
             case R.id.addPasswordDone: {
                 //check if fields are empty
                 if(addPasswordInput == null || addPasswordInput==null ||
@@ -256,6 +257,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 break;
             }
 
+            //ADD CHANGE SECURITY PASSWORD
             case R.id.changePasswordDone: {
                 //Check for null or empty fields
                 if(emptyInputCheck(changePasswordCurrentInput) || emptyInputCheck(changePasswordNewInput)
@@ -281,9 +283,19 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 break;
             }
 
+            //REMOVE APPLICATION SECURITY PASSWORD
             case R.id.removePasswordDone: {
+
+                String applicationPassword = removePasswordInput.getText().toString();
+
+                if(applicationPassword.isEmpty()){
+                    removePasswordInput.setError("Empty");
+                    break;
+                }
+
+                //Disable password security
                 String password = loadPasswordPref(ApplicationConstants.SHARED_PREFERENCES_PASSWORD,this);
-                if(removePasswordInput.getText().toString().equals(password)){
+                if(applicationPassword.equals(password)){
                     savePasswordPref(ApplicationConstants.SHARED_PREFERENCES_PASSWORD,ApplicationConstants.EMPTY,this);
                     removePasswordLayout.setVisibility(View.GONE);
                     hideLockIcon.setVisibility(View.VISIBLE);
@@ -293,6 +305,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 break;
             }
 
+            //WHEEL ICON - LEFT CORNER TOP
             case R.id.lockOptions: {
                     lockStatusIcon.setVisibility(View.VISIBLE);
                 if(addPasswordLayout.getVisibility() == View.GONE && changePasswordLayout.getVisibility() == View.GONE
@@ -302,11 +315,13 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 break;
             }
 
+            //ARROWS RIGHT SAME LINE AS ICONS
             case R.id.hideLockIcon: {
                 lockStatusIcon.setVisibility(View.GONE);
                 break;
             }
 
+            //ARROWS RIGHT SAME LINE AS DONE BUTTON
             case R.id.hideAddView: {
                 addPasswordLayout.setVisibility(View.GONE);
                 hideLockIcon.setVisibility(View.VISIBLE);
@@ -314,6 +329,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 break;
             }
 
+            //ARROWS RIGHT SAME LINE AS CHANGE PASSWORD BUTTON
             case R.id.hideChangeView: {
                 changePasswordLayout.setVisibility(View.GONE);
                 hideLockIcon.setVisibility(View.VISIBLE);
@@ -321,6 +337,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 break;
             }
 
+            //ARROWS RIGHT SAME LINE AS REMOVE PASSWORD BUTTON
             case R.id.hideRemoveView: {
                 removePasswordLayout.setVisibility(View.GONE);
                 hideLockIcon.setVisibility(View.VISIBLE);
@@ -328,6 +345,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 break;
             }
 
+            //ICON LEFT TOP
             case R.id.addItem: {
                 ItemAddDialog itemAddDialog = new ItemAddDialog(this,databaseManager,accountItemAdapter,databaseItemsList);
                 itemAddDialog.show();
