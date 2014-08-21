@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -47,9 +48,26 @@ public class AccountDetailsPopup extends PopupWindow {
         int height = size.y;
 
         // Inflate the popup_layout.xml
-        //LinearLayout viewGroup = (LinearLayout) ((Activity)context).findViewById(R.id.detailsPopupLayout);
+
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View layout = layoutInflater.inflate(R.layout.details_account_popup, null);
+        LinearLayout parentLayout = (LinearLayout) layout.findViewById(R.id.detailsPopupLayout);
+
+
+        //TODO on bottom list elements show the arrow on the bottom of the popup
+       /* int currentRowHeight = height - locationOnScreenHeight;
+
+        if(locationOnScreenHeight < (height/2)){
+            Toast.makeText(context, "First Half", Toast.LENGTH_SHORT).show();
+
+        }else{
+            Toast.makeText(context, "Second Half", Toast.LENGTH_SHORT).show();
+
+            parentLayout.setBackground(context.getResources().getDrawable(R.drawable.details_popup_revers));
+
+        }*/
+
+
 
         //Init Data and UI
         initUI(layout);
@@ -79,18 +97,15 @@ public class AccountDetailsPopup extends PopupWindow {
         detailsPopupAccountName = (TextView) layout.findViewById(R.id.detailsPopupAccountName);
         detailsPopupAccountPassword = (TextView) layout.findViewById(R.id.detailsPopupAccountPassword);
         detailsPopupAccount = (TextView) layout.findViewById(R.id.detailsPopupAccount);
-
-        detailsPopupAccountName.setText(accountObject.getAccountName().toString());
-        detailsPopupAccountPassword.setText(accountObject.getAccountPassword().toString());
-        detailsPopupAccount.setText(accountObject.getAccountDetails().toString());
     }
 
     /**
      * Initialize components with data from the account objects
      */
     public void initData() {
-
-
+        detailsPopupAccountName.setText(accountObject.getAccountName().toString());
+        detailsPopupAccountPassword.setText(accountObject.getAccountPassword().toString());
+        detailsPopupAccount.setText(accountObject.getAccountDetails().toString());
     }
 
 }
