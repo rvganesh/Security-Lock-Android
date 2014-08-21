@@ -10,7 +10,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import java.util.List;
+
 import softwareinclude.ro.securitylockandroid.R;
+import softwareinclude.ro.securitylockandroid.adapter.AccountItemAdapter;
 import softwareinclude.ro.securitylockandroid.interfaces.IDatabaseManager;
 import softwareinclude.ro.securitylockandroid.model.AccountDataModel;
 
@@ -29,11 +32,15 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener{
     private LinearLayout addDetailsLayout;
 
     private IDatabaseManager databaseManager;
+    private AccountItemAdapter accountItemAdapter;
+    List<AccountDataModel> databaseItemsList;
 
-    public ItemAddDialog(Context context, IDatabaseManager databaseManager) {
+    public ItemAddDialog(Context context, IDatabaseManager databaseManager,AccountItemAdapter accountItemAdapter, List<AccountDataModel> databaseItemsList) {
         super(context);
         this.context = context;
         this.databaseManager = databaseManager;
+        this.accountItemAdapter = accountItemAdapter;
+        this.databaseItemsList = databaseItemsList;
     }
 
 
@@ -76,6 +83,8 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener{
         switch (v.getId()) {
 
             case R.id.cancelAdd: {
+                accountItemAdapter.setNotifyOnChange(true);
+                accountItemAdapter.notifyDataSetChanged();
                 dismiss();
                 break;
             }
@@ -93,6 +102,8 @@ public class ItemAddDialog extends Dialog implements View.OnClickListener{
                 }
 
                 databaseManager.insertAccountDataItem(accountData);
+                databaseItemsList.add(accountData);
+                accountItemAdapter.notifyDataSetChanged();
 
                 dismiss();
                 break;

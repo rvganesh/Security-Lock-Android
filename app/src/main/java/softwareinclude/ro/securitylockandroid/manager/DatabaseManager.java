@@ -7,6 +7,7 @@ import android.util.Log;
 
 import java.util.List;
 
+import de.greenrobot.dao.query.QueryBuilder;
 import softwareinclude.ro.securitylockandroid.interfaces.IDatabaseManager;
 import softwareinclude.ro.securitylockandroid.model.AccountDataModel;
 import softwareinclude.ro.securitylockandroid.model.AccountDataModelDao;
@@ -119,7 +120,21 @@ public class DatabaseManager implements IDatabaseManager {
     }
 
     @Override
-    public void deleteAccountDataItem() {
+    public void deleteAccountDataItem(AccountDataModel accountData) {
+
+        try {
+            openWritableDb();
+            AccountDataModelDao accountDataModelDao = daoSession.getAccountDataModelDao();
+            QueryBuilder<AccountDataModel> queryBuilder = accountDataModelDao.queryBuilder();
+            List<AccountDataModel> userToDelete = queryBuilder.list();
+            for (AccountDataModel user : userToDelete) {
+                accountDataModelDao.delete(user);
+            }
+            daoSession.clear();
+            Log.d(TAG, userToDelete.size() + " entry. " + "Deleted account: " + accountData.getAccountName() + " from the schema.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -140,6 +155,7 @@ public class DatabaseManager implements IDatabaseManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return accoutsList;
     }
 }

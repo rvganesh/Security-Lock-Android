@@ -9,17 +9,16 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import softwareinclude.ro.securitylockandroid.R;
+import softwareinclude.ro.securitylockandroid.adapter.AccountItemAdapter;
 import softwareinclude.ro.securitylockandroid.dialog.ItemAddDialog;
 import softwareinclude.ro.securitylockandroid.interfaces.IDatabaseManager;
 import softwareinclude.ro.securitylockandroid.manager.DatabaseManager;
@@ -63,10 +62,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private Button lockOptions;
     //List
     private ListView accountItemListView;
-    private ArrayAdapter<String> accountItemsArrayAdapter ;
-    private List<String> accountList;
-
+    //Custom Adapter
+    private AccountItemAdapter accountItemAdapter;
+    //DB Manager
     private IDatabaseManager databaseManager;
+    private List<AccountDataModel> databaseItemsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,13 +137,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
         lockOptions.setOnClickListener(this);
 
         accountItemListView = (ListView) findViewById(R.id.accountItemListView);
-        accountList = new ArrayList<String>();
-        List<AccountDataModel> databaseItemsList = databaseManager.loadListAccounts();
-        for(AccountDataModel dataModel : databaseItemsList){
-            accountList.add(dataModel.getAccountName());
-        }
-        accountItemsArrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, accountList);
-        accountItemListView.setAdapter( accountItemsArrayAdapter );
+        databaseItemsList = databaseManager.loadListAccounts();
+        accountItemAdapter = new AccountItemAdapter(this,databaseItemsList,databaseManager);
+        accountItemListView.setAdapter( accountItemAdapter );
     }
 
     /**
@@ -333,7 +329,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             }
 
             case R.id.addItem: {
-                ItemAddDialog itemAddDialog = new ItemAddDialog(this,databaseManager);
+                ItemAddDialog itemAddDialog = new ItemAddDialog(this,databaseManager,accountItemAdapter,databaseItemsList);
                 itemAddDialog.show();
                 break;
             }

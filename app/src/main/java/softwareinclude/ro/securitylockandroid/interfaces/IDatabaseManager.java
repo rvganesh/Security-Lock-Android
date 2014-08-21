@@ -12,7 +12,7 @@ public interface IDatabaseManager {
     public void closeDbConnections();
     public void insertAccountDataItem(AccountDataModel accountData);
     public void updateAccountDataItem();
-    public void deleteAccountDataItem();
+    public void deleteAccountDataItem(AccountDataModel accountData);
     public void findAccountById();
     public List<AccountDataModel> loadListAccounts();
 
