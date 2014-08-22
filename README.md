@@ -28,6 +28,9 @@ Extended application for actual use. Keep track of any password, just by adding 
 
 </center>
 
+Notice: Application was tested only on Android Emulator.
+Future testing will be on Samsung Galaxy S3 only.
+
 Future Implementation:
 - Application landscape (portrait only at the moment)
 - Lock Screen Animation (slide top and down background)
