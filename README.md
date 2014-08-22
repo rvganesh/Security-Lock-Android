@@ -19,3 +19,10 @@ Application screenshot:
 
 </center>
 
+
+<center>
+<img alt="Add Account without details" src="https://github.com/ManolescuSebastian/Security-Lock-Android/blob/master/screenshot/security_add_account.png" height="400px" />&nbsp;&nbsp;&nbsp;
+<img alt="Add Account with details" src="https://github.com/ManolescuSebastian/Security-Lock-Android/blob/master/screenshot/security_add_account_with_details.png" height="400px" />&nbsp;&nbsp;&nbsp;
+
+</center>
+
