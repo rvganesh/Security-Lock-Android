@@ -32,6 +32,8 @@ Notice: Application was tested only on Android Emulator.
 Future testing will be on Samsung Galaxy S3 only.
 
 Future Implementation:
+- Unit Testing
+- Integration Testing
 - Application landscape (portrait only at the moment)
 - Lock Screen Animation (slide top and down background)
 - Redesign
