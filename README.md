@@ -10,7 +10,8 @@ Application screenshot:
 
 </center>
 
-<!-- Application Password Options: ADD Password / CHANGE Password / REMOVE Password -->
+Application Password Options: Add Password / Change Password / Remove Password.
+
 
 <center>
 <img alt="Add Passwrod" src="https://github.com/ManolescuSebastian/Security-Lock-Android/blob/master/screenshot/security_lock_add_password.png" height="400px" />&nbsp;&nbsp;&nbsp;
