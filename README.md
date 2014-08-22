@@ -27,3 +27,7 @@ Application Password Options: Add Password / Change Password / Remove Password.
 
 </center>
 
+Future Implementation:
+- Application landscape (portrait only at the moment)
+- Lock Screen Animation (slide top and down background)
+- Redesign
