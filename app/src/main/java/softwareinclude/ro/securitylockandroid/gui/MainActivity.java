@@ -149,6 +149,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
         changePasswordLayout.setVisibility(View.GONE);
         removePasswordLayout.setVisibility(View.GONE);
 
+        displayLockActivity();
+    }
+
+    /**
+     * Display lock screen
+     */
+    public void displayLockActivity(){
         String currentPassword = loadPasswordPref(ApplicationConstants.SHARED_PREFERENCES_PASSWORD, this);
         if (currentPassword != null && !currentPassword.isEmpty()) {
             Intent lockScreenIntent = new Intent(MainActivity.this, LockScreen.class);
@@ -366,9 +373,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
      */
     @Override
     protected void onRestart() {
-        if (databaseManager == null)
+        if (databaseManager == null) {
             databaseManager = new DatabaseManager(this);
-
+        }
         super.onRestart();
     }
 
@@ -378,8 +385,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
      */
     @Override
     protected void onResume() {
-        // init database manager
-        databaseManager = DatabaseManager.getInstance(this);
+        if(databaseManager == null){
+            databaseManager = DatabaseManager.getInstance(this);
+        }
+
+        //Show lock screen if the application exit or run in background
+        displayLockActivity();
 
         super.onResume();
     }
@@ -389,8 +400,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
      */
     @Override
     protected void onStop() {
-        if (databaseManager != null)
+        if (databaseManager != null) {
             databaseManager.closeDbConnections();
+        }
 
         super.onStop();
     }

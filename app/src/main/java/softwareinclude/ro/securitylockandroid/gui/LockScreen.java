@@ -114,4 +114,5 @@ public class LockScreen extends Activity implements View.OnClickListener {
             }
         }
     }
+
 }
