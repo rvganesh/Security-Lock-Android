@@ -23,6 +23,8 @@ import softwareinclude.ro.securitylockandroid.util.ApplicationConstants;
  */
 public class LockScreen extends Activity implements View.OnClickListener {
 
+    private String TAG = LockScreen.class.getSimpleName();
+
     private EditText passwordInput;
     private Button unlock;
     private ImageView lockImage;
